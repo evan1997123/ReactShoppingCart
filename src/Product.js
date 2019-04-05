@@ -5,47 +5,44 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 1
-      
+      // count: 1
     }
   }
 
-  addToCart(){
-    //this.setState((prevState) => {count: prevState.count+1});
-    if(this.state.count>this.props.limit)
-    {
-      alert(`There are too many ${this.props.productName} in your cart.`);
-    }
-    else
-    {
-      this.setState({
-      count: this.state.count+1
-      });
-
-      alert(`There are ${this.state.count} ${this.props.productName} in your cart.`);
-    
-    }
-  }
+  // addToCart() {
+  //   if (this.state.count > this.props.limit) {
+  //     alert(There are too many ${this.props.productName} in your cart!);
+  //   }
+  //   else {
+  //     this.setState({
+  //       count: this.state.count + 1
+  //     })
+  //     alert(There are ${this.state.count} ${this.props.productName} in your cart!);
+  //   }
+  // }
 
   render() {
     return (
-        <div class="ui cards">
-          <div class="card">
-            <div class="content">
-              <div class="header">{this.props.productName}</div>
-                <div class="description">
-                  {this.props.price}
-                </div>
-            </div>
-              <div class="ui bottom attached button" onClick = {() => this.addToCart()}>
-                <i class="add icon" onClick = {() => this.addToCart()}></i>
-                Add to cart
-              </div>
+      <div className="ui cards">
+      <div className="card">
+        <div className="content">
+          <div className="header">{this.props.productName}</div>
+          <div className="description">
+            ${this.props.price}
           </div>
         </div>
+        <div className="ui bottom attached button" onClick={() => {this.props.onAddToCart(this.props.productName, this.props.price)}}>
+          <i className="add icon"></i>
+          Add to Cart
+        </div>
+        <div className="ui bottom attached button" onClick={() => {this.props.onRemoveToCart(this.props.productName, this.props.price)}}>
+          <i className="remove icon"></i>
+          Remove from Cart
+        </div>
+      </div>
+    </div>
     );
   }
-
 }
-
+  
 export default Product;
